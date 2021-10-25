@@ -1,0 +1,78 @@
+* Package dependencies
+- Python 1.6
+- Pytorch 1.6.0
+- GPytorch
+- Pickle
+- tqdm
+
+* Datasets
+The following datasets are used. If you wish to run the MF-* tasks, you are required to download the CelebA dataset from the below link and place it in ~datasets~ of your home folder.
+You do not have to download COCOS dataset for running AC-* tasks. See "Instructions for Running" section. 
+
+- CelebA (http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
+- COCOS (https://github.com/nightrome/cocostuff)
+
+* Code files and their utility
+The task and the corresponding file name is mentioned is as below.
+
+|-------------+-------------------|
+| Task        | File name         |
+|-------------+-------------------|
+| MF-CelebA   | celeba.py         |
+| MF-IMDB     | imdb.py           |
+| AC-COCOS    | cocos.py          |
+| AC-COCOS10K | cocos10k.py       |
+|-------------+-------------------|
+
+Important source tree files and their utiltity is shown in table below.
+
+|------------------------------------------+-----------------------------------------------------------------------------------------------------------------------|
+| File name                                | Utility                                                                                                               |
+|------------------------------------------+-----------------------------------------------------------------------------------------------------------------------|
+| ~src/beta_gp_rloss_explorer.py~          | Implements BetaGP, BetaGP-SL, BetaGP-SLP                                                                              |
+| ~src/simple_explorer.py~                 | Implements Beta-I                                                                                                     |
+| ~src/bern_gp_rloss_explorer.py~          | Implements BernGP                                                                                                     |
+| ~src/betaab_gp_rloss_explorer.py~        | BetaGPab                                                                                                              |
+| ~src/likelihoods/beta_gp_likelihoods.py~ | Implements different data likelihoods. The routines: ~baseline~, ~simplev3_rloss~ correspond to BetaGP-SL, BetaGP-SLP |
+| ~src/dataset.py~                         | Abstract classes for Dataset, service model                                                                           |
+| ~src/dataset_fitter.py~                  | Routines for calibration, sampling from arms, warm start etc.                                                         |
+| ~notebooks/ToyGP.ipynb~                  | Has the code for the simple setting described in the Appendix.                                                        |
+|------------------------------------------+-----------------------------------------------------------------------------------------------------------------------|
+
+
+* Instructions for running
+
+1. Setup your environment by installing all the package dependencies listed above. 
+2. Download ~data.zip~ from this [[https://drive.google.com/file/d/1ka6D2_LorQ_GCGzFgn4FmUdXIxbvcCe8/view?usp=sharing][drive link]]. Unzip ~data.zip~ in the working directory. 
+3. (Optional) If you wish to run ~MF-*~ tasks, download [[http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html][CelebA dataset]] and place it in ~$HOME/datasets~.
+4. Follow the description below for the specific python commands. 
+ 
+
+** For Estimation only Experiments of Section 4.5 Reported in Table 2, Figure 3
+
+*Beta-I*
+~python <task>.py --explorer simple --seed 0~
+
+*BernGP*
+~python <task>.py --explorer bern_gp_rloss --seed 0 --ablation~
+
+*BetaGP*  
+~python <task>.py --explorer beta_gp_rloss --seed 0 --approx_type baseline --no_scale_loss --ablation~
+
+*BetaGP-SL*
+~python <task>.py --explorer beta_gp_rloss --seed 0 --approx_type baseline --ablation~
+
+*BernGP-SLP*  
+~python <task>.py --explorer beta_gp_rloss --seed 0 --approx_type simplev3 --ablation~
+
+~<task>~ should be set to one of ~celeba, celeba_private, cocos, cocos10k~.
+
+** For Estimation + Exploration reported in Figure 4
+Use the same commands described in the previous section but with ~--ablation~ flag removed.
+
+** Impact of Calibration of Section 4.7 and Figure 5
+
+~python <task>.py --explorer simple --seed 0 --ablation --sample_type [option]~
+
+~Cal:Full~, ~Cal:Temp~, ~Cal:Simple~ correspond to sample type options: ~correctedwep~, ~correctednoep~, ~raw~, respectively.  
+~<task>~ should be set to one of ~celeba, celeba_private, cocos, cocos10k~.
