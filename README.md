@@ -1,3 +1,5 @@
+Code for the NeurIPS 2021 paper:   
+[Active Assessment of Prediction Services as Accuracy Surface Over Attribute Combinations](https://arxiv.org/pdf/2108.06514.pdf).  
 
 # Table of Contents
 
@@ -98,49 +100,49 @@ Important source tree files and their utiltity is shown in table below.
 
 <tbody>
 <tr>
-<td class="org-left">`src/beta_gp_rloss_explorer.py`</td>
+<td class="org-left"><code>src/beta_gp_rloss_explorer.py</code></td>
 <td class="org-left">Implements BetaGP, BetaGP-SL, BetaGP-SLP</td>
 </tr>
 
 
 <tr>
-<td class="org-left">`src/simple_explorer.py`</td>
+<td class="org-left"><code>src/simple_explorer.py</code></td>
 <td class="org-left">Implements Beta-I</td>
 </tr>
 
 
 <tr>
-<td class="org-left">`src/bern_gp_rloss_explorer.py`</td>
+<td class="org-left"><code>src/bern_gp_rloss_explorer.py</code></td>
 <td class="org-left">Implements BernGP</td>
 </tr>
 
 
 <tr>
-<td class="org-left">`src/betaab_gp_rloss_explorer.py`</td>
+<td class="org-left"><code>src/betaab_gp_rloss_explorer.py</code></td>
 <td class="org-left">BetaGPab</td>
 </tr>
 
 
 <tr>
-<td class="org-left">`src/likelihoods/beta_gp_likelihoods.py`</td>
+<td class="org-left"><code>src/likelihoods/beta_gp_likelihoods.py</code></td>
 <td class="org-left">Implements different data likelihoods. The routines: `baseline`, `simplev3_rloss` correspond to BetaGP-SL, BetaGP-SLP</td>
 </tr>
 
 
 <tr>
-<td class="org-left">`src/dataset.py`</td>
+<td class="org-left"><code>src/dataset.py</code></td>
 <td class="org-left">Abstract classes for Dataset, service model</td>
 </tr>
 
 
 <tr>
-<td class="org-left">`src/dataset_fitter.py`</td>
+<td class="org-left"><code>src/dataset_fitter.py</code></td>
 <td class="org-left">Routines for calibration, sampling from arms, warm start etc.</td>
 </tr>
 
 
 <tr>
-<td class="org-left">`notebooks/ToyGP.ipynb`</td>
+<td class="org-left"><code>notebooks/ToyGP.ipynb</code></td>
 <td class="org-left">Has the code for the simple setting described in the Appendix.</td>
 </tr>
 </tbody>
